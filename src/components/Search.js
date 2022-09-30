@@ -1,6 +1,6 @@
 import React from "react";
 
-//pass search function from AccountContainer as props
+//pass search function from AccountContainer as props (realTimeSearch)_
 function Search({ realTimeSearch }) {
   return (
     <div className="ui large fluid icon input">
