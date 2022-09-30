@@ -1,9 +1,9 @@
 import React from "react";
 
 function Transaction(props) {
-  
-  const newTransaction = props.transactions.map((transaction) => {
-    
+  // initializes a new array and maps each transaction to respective table fields.
+  const mappedTransactions = props.transactions.map((transaction) => {
+
     return (
       <tr>
         <td>{transaction.date}</td>
@@ -13,7 +13,7 @@ function Transaction(props) {
       </tr>
     );
   });
-  return <>{newTransaction}</>;
+  return <>{mappedTransactions}</>;
 }
 
 export default Transaction;

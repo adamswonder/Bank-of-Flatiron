@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+//handles creation of a new transaction from inputs and updates our DOM on the same
 function AddTransactionForm(AddTransactionHandler) {
   const [formData, setFormData] = useState({
     date: "",
@@ -7,10 +8,14 @@ function AddTransactionForm(AddTransactionHandler) {
     category: "",
     amount: "",
   });
+
+  //On form submit, formData states gets updated uniquely following the id
   function handleChange(event) {
     const key = event.target.id;
     setFormData({ ...formData, [key]: event.target.value });
   }
+
+  //Listens to the event on click and submits the form data to our json file at the backend appending new transaction
   function click(event) {
     event.preventDefault();
     fetch(" http://localhost:8001/transactions", {
@@ -25,6 +30,7 @@ function AddTransactionForm(AddTransactionHandler) {
     setFormData({ date: "", description: "", category: "", amount: "" });
   }
 
+  // Returned values are set inside the form fields for display    
   return (
     <div className="ui segment">
       <form className="ui form">

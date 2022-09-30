@@ -1,6 +1,7 @@
 import React from "react";
 import Transaction from "./Transaction";
 
+// Pass transactions as props from the parent component then render to the transaction page.
 function TransactionsList({ transactions }) {
   return (
     <table className="ui celled striped padded table">
