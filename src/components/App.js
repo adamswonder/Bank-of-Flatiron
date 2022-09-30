@@ -1,6 +1,7 @@
 import React from "react";
 import AccountContainer from "./AccountContainer";
 
+//this renders the whole project file of transactions
 function App() {
   return (
     <div className="ui raised segment">
