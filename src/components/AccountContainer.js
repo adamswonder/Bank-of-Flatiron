@@ -3,7 +3,7 @@ import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 
-//Holds the transactions function and processes
+//Holds the transactions function and states processes
 function AccountContainer() {
   const [transactions, setTransactions] = useState([]); //Hook to update state of our component when rendered
   const [lookUp, setLookUp] = useState([]); // updates our search trail when the event is listned to
@@ -22,7 +22,7 @@ function AccountContainer() {
       lookUp.filter((res) => //filter here returns the value(s) that match the specified text input
         res.description
           .toLowerCase()
-          .includes(event.target.value.toLowerCase())
+          .includes(event.target.value.toLowerCase()) //checks whether the typed phrase is present during filter
       )
     );
   }
