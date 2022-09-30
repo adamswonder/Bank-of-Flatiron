@@ -9,7 +9,7 @@ function AddTransactionForm(AddTransactionHandler) {
     amount: "",
   });
 
-  //On form submit, formData states gets updated uniquely following the id
+  //On form submit, formData state gets updated uniquely.
   function handleChange(event) {
     const key = event.target.id;
     setFormData({ ...formData, [key]: event.target.value });
