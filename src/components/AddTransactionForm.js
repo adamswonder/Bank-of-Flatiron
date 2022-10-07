@@ -1,62 +1,60 @@
 import React, { useState } from "react";
 
 //handles creation of a new transaction from inputs and updates our DOM on the same
-function AddTransactionForm(AddTransactionHandler) {
-  const [formData, setFormData] = useState({
-    date: "",
-    description: "",
-    category: "",
-    amount: "",
-  });
+function AddTransactionForm() {
+  // initialize states for the form input
+  const [description, setDescription] = useState('');
+  const [category, setUpdatedCategory] = useState('');
+  const [amount, setNewAmount] = useState('');
+  const [id, setIdentifier] = useState('');
+  const [date, setNewDate] = useState('');
 
-  //On form submit, formData state gets updated uniquely.
-  function handleChange(event) {
-    const key = event.target.id;
-    setFormData({ ...formData, [key]: event.target.value });
-  }
+  function submitForm() {
+    const updateTransc = { id, date, description, category, amount };
 
-  //Listens to the event on click and submits the form data to our json file at the backend appending new transaction
-  function click(event) {
-    event.preventDefault();
-    fetch(" http://localhost:8001/transactions", {
-      method: "POST",
+    fetch('http://localhost:8001/transactions', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((transaction) => AddTransactionHandler(transaction));
-    setFormData({ date: "", description: "", category: "", amount: "" });
+      body: JSON.stringify(updateTransc),
+    }).then(() => {
+      // setDescription("")
+      // setUpdatedCategory("")
+      // setNewAmount("")
+      // setIdentifier("")
+      // setNewDate("")
+      console.log('Mmh..')
+    });
   }
 
   // Returned values are set inside the form fields for display    
   return (
     <div className="ui segment">
       <form className="ui form">
-        <div className="inline fields">
+        <div className="inline fields" key={setIdentifier}>
           <input
             type="date"
             id="date"
             name="date"
-            value={formData.date}
-            onChange={handleChange}
+            value={date}
+            onChange={(e)=> setNewDate(e.target.value)}
           />
           <input
             type="text"
             id="description"
             name="description"
             placeholder="Description"
-            value={formData.description}
-            onChange={handleChange}
+            value={description}
+            onChange={(e)=>setDescription(e.target.value)}
           />
           <input
             type="text"
             id="category"
             name="category"
             placeholder="Category"
-            value={formData.category}
-            onChange={handleChange}
+            value={category}
+            onChange={(e)=>setUpdatedCategory(e.target.value)}
           />
           <input
             type="number"
@@ -64,13 +62,11 @@ function AddTransactionForm(AddTransactionHandler) {
             name="amount"
             placeholder="Amount"
             step="0.01"
-            value={formData.amount}
-            onChange={(event) =>
-              setFormData({ ...formData, amount: event.target.value })
-            }
+            value={amount}
+            onChange={(e) =>setNewAmount(e.target.value)}
           />
         </div>
-        <button className="ui button" type="submit" onClick={click}>
+        <button className="ui button" type="submit" onClick={submitForm}>
           Add Transaction
         </button>
       </form>

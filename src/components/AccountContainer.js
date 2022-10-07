@@ -13,24 +13,26 @@ function AccountContainer() {
       .then((res) => {
         setTransactions(res);
         setLookUp(res);
-      });
+      })
+      .catch((console.error()))
   }, []);
 
   //handles the search event by checking if what was passed as a search matches the current transaction description
   const realTimeSearch = (event) => {
     setTransactions(
-      lookUp.filter((res) => //filter here returns the value(s) that match the specified text input
-        res.description
+      lookUp.filter((transactions) => //filter here returns the value(s) that match the specified text input
+        transactions.description
           .toLowerCase()
           .includes(event.target.value.toLowerCase()) //checks whether the typed phrase is present during filter
       )
     );
+    return transactions
   }
 
   return (
     <div>
       <Search realTimeSearch={realTimeSearch} />
-      <AddTransactionForm />
+      <AddTransactionForm transactions={transactions}/>
       <TransactionsList transactions={transactions} />
     </div>
   );

@@ -6,7 +6,7 @@ function Transaction(props) {
 
     return (
       // table data gets displayed here
-      <tr>
+      <tr key={transaction.id}>
         <td>{transaction.date}</td>
         <td>{transaction.description}</td>
         <td>{transaction.category}</td>
@@ -14,7 +14,7 @@ function Transaction(props) {
       </tr>
     );
   });
-  return <>{mappedTransactions}</>;
+  return mappedTransactions;
 }
 
 export default Transaction;
